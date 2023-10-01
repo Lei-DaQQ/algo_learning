@@ -1,0 +1,124 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Stack;
+
+class Main {
+    static int MOD = (int) (1e9 + 7);
+    static int MAXN = 105;
+    static int[] timesofX = new int[MAXN];
+    static int[] eachVar = new int[MAXN];
+
+    public static void main(String[] args) {
+        int n, m;
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt(); // variables count
+        m = sc.nextInt(); // pian driv.... count
+        sc.nextLine();
+        String ln = sc.nextLine();
+        String[] niBoLan = ln.split(" ");
+
+//        Stack<Integer> stack = new Stack<>();
+        Stack<Expression> stack = new Stack<>();
+        ArrayList<Expression> arr = new ArrayList<>();
+        for (int i = 0; i < niBoLan.length; ++i) {
+            String str = niBoLan[i];
+            if (str.startsWith("x")) {
+                int id = Integer.valueOf(str.substring(1));
+                Expression texp = new Expression(n, id, 1);
+                stack.push(texp);
+                arr.add(texp);
+            } else if (str.startsWith("+")) {
+                stack.pop();
+                stack.pop();
+                stack.push(new Expression(n));
+//                int a = stack.pop();
+//                int b = stack.pop();
+//                timesofX[a]++;
+//                timesofX[b]++;
+//                stack.push(0);
+            } else if (str.startsWith("-")) {
+                Expression texp = stack.pop();
+                texp.changeSignal();
+                stack.push(new Expression(n));
+            } else if (str.startsWith("*")) {
+                // not processing
+                Expression b = stack.pop();
+                Expression a = stack.pop();
+                a.multiply(b);
+                stack.push(a);
+                arr.remove(b);
+            } else { // a number
+                Expression texp = new Expression(n, Integer.valueOf(str));
+                stack.push(texp);
+                arr.add(texp);
+            }
+
+        }
+
+
+        for (int i = 0; i < m; ++i) {
+            int id = sc.nextInt();
+            for (int j = 1; j <= n; ++j) {
+                // n number:
+                eachVar[j] = sc.nextInt();
+                // process this :
+            }
+            int res = 0;
+            for(int j = 0; j < arr.size(); ++j){
+                Expression texp = arr.get(j);
+                res += texp.getPian(id, eachVar);
+            }
+            System.out.println(((res % MOD) + MOD) % MOD);
+
+        }
+    }
+}
+
+class Expression {
+    int n;
+    int realtion;
+    int[] eachExp;
+
+    public Expression(int n) {
+        this.n = n;
+        this.eachExp = new int[n+1];
+    }
+
+    public Expression(int n, int id, int relation) {
+
+        this.n = n;
+        this.eachExp = new int[n+1];
+        this.eachExp[id] = 1;
+        this.realtion = relation;
+    }
+    public Expression(int n, int relation) {
+        this.n = n;
+        this.eachExp = new int[n+1];
+        this.realtion = relation;
+    }
+
+    public int getPian(int id, int[] eachNum) {
+        if(eachExp[id] == 0) return 0;
+        int teachNumofId = eachNum[id];
+
+        int res = (int) (realtion * Math.pow(eachNum[id], eachExp[id] - 1) * (eachExp[id]));
+        eachNum[id] = 1;
+        for (int i = 1; i <= n; ++i) {
+            res *= Math.pow(eachNum[i], eachExp[i]);
+        }
+        eachNum[id] = teachNumofId;
+        return res;
+    }
+
+    public void changeSignal() {
+        realtion = -realtion;
+    }
+
+    public void multiply(Expression b) {
+        this.realtion *= b.realtion;
+        for (int i = 1; i <= n; ++i) {
+            this.eachExp[i] += b.eachExp[i];
+        }
+
+    }
+}

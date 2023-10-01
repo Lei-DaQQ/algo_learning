@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+const int maxn = 1e6;
+int n, m;
+int op[maxn];
+double op_data[maxn];
+
+double sketch_prefix[maxn];
+double rotate_prefix[maxn];
+
+
+int main()
+{
+    cin >> n >> m;
+
+    sketch_prefix[0] = 1;
+    rotate_prefix[0] = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        cin >> op[i] >> op_data[i];
+        if (op[i] == 1)
+        {
+            sketch_prefix[i] = sketch_prefix[i - 1] * op_data[i];
+            rotate_prefix[i] = rotate_prefix[i - 1];
+        }
+        else
+        {
+            sketch_prefix[i] = sketch_prefix[i - 1];
+            rotate_prefix[i] += rotate_prefix[i - 1] + op_data[i];
+        }
+    }
+
+    // start to querry:
+
+    for (int i = 0; i < m; ++i)
+    {
+        int l, r;
+        int x, y;
+        cin >> l >> r >> x >> y;
+
+        double final_sketch = sketch_prefix[r] / sketch_prefix[l - 1];
+        double final_theta = rotate_prefix[r] - rotate_prefix[l - 1];
+
+        double cos_t = cos(final_theta);
+        double sin_t = sin(final_theta);
+        double new_x = 1.0 * x * cos_t - 1.0 * y * sin_t;
+        double new_y = 1.0 * x * sin_t + 1.0 * y * cos_t;
+        new_x *= final_sketch;
+        new_y *= final_sketch;
+        printf("%f %f\n", new_x, new_y);
+
+    }
+    return 0;
+}

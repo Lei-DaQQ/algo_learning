@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+class Main {
+    static int n, m;
+    static int[][] op;
+    static int[][] pos;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
+        op = new int[n][2];
+        pos = new int[m][2];
+        for(int i = 0; i < n; ++i)
+        {
+            op[i][0] = sc.nextInt();
+            op[i][1] = sc.nextInt();
+        }
+        for(int i = 0; i < m; ++i)
+        {
+            pos[i][0] = sc.nextInt();
+            pos[i][1] = sc.nextInt();
+        }
+
+        // process m point:
+        for(int i = 0; i < m; ++i){
+            process(pos[i][0], pos[i][1]);
+        }
+
+    }
+
+    private static void process(int x, int y) {
+        for(int i =0; i<n;++i)
+        {
+            x+=op[i][0];
+            y+=op[i][1];
+        }
+        System.out.println(x + " " + y);
+
+    }
+}
