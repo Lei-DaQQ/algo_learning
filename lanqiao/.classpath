@@ -6,11 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="2022-03"/>
-	<classpathentry kind="src" path="2022-06"/>
-	<classpathentry kind="src" path="2022-09"/>
-	<classpathentry kind="src" path="2022-12"/>
-	<classpathentry kind="src" path="2023-09"/>
-	<classpathentry kind="src" path="2014-03"/>
+	<classpathentry kind="src" path="2023-14th-javaMaster"/>
+	<classpathentry kind="src" path="2022-13th-javaMaster"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
