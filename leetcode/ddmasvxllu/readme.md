@@ -241,3 +241,62 @@ class Solution(object):
 
 #### 977.有序数组的平方
 https://leetcode.cn/problems/squares-of-a-sorted-array/description/
+
+不知道有没有空间复杂度 O(1)的做法，不开新的数组
+
+
+
+### 长度最小的子数组
+#### 😊209.长度最小的子数组
+https://programmercarl.com/0209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html
+
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.md
+
+https://leetcode.cn/problems/minimum-size-subarray-sum/description/
+
+滑动窗口
+
+前缀和版
+```python
+class Solution(object):
+    def minSubArrayLen(self, target, nums):
+        """
+        :type target: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        # 前缀和版滑动窗口
+        prefix = [0]
+        for i in range(len(nums)):
+            prefix.append(prefix[-1] + nums[i])
+
+        min_len = float('inf')
+        for i in range(len(prefix)):
+            if prefix[i] >= target:
+                min_len = i
+                break
+        if min_len == float('inf'):
+            return 0
+
+        # 逐步减小 min_len
+        i = 1
+        # nums有多少元素， prefix 下标就可以取到该数
+        while i + min_len - 1 < len(prefix):
+            # 看减小 min_len 是否可行
+            while prefix[i+min_len-1] - prefix[i] >= target:
+                min_len -= 1
+            i += 1
+        return min_len
+
+
+print(Solution().minSubArrayLen(7, [2, 3, 1, 2, 4, 3]))
+```
+
+
+#### 904.水果成篮
+https://leetcode.cn/problems/fruit-into-baskets/description/
+
+
+#### 76.最小覆盖子串
+
+https://leetcode-cn.com/problems/minimum-window-substring/description/
