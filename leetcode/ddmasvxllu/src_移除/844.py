@@ -1,3 +1,4 @@
+
 class Solution(object):
     def backspaceCompare(self, s, t):
         """
@@ -5,24 +6,39 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        #  倒序 双指针
+        #  反向 双指针
         s_right = len(s) - 1
-        s_left = len(s) - 1
-
         t_right = len(t) - 1
-        t_left = len(t) - 1
 
-        while s_left >= 0 and t_left >= 0:
-            while s[s_left] == '#':
-                s_left -= 1
-            s_left -= (s_right - s_left)
+        s_del = 0
+        t_del = 0
+        while True:
 
-            while t[t_left] == '#':
-                t_left -= 1
-            t_left -= (t_right - t_left)
-            if s_left >= 0 and t_left >= 0:
-                if s[s_left] != t[t_left]:
-                    return False
-            t_right = t_left - 1
-            s_right = s_left - 1
-        return True
+            while s_right >= 0:
+                if s[s_right] == '#':
+                    s_del += 1
+                elif s_del > 0:
+                    s_del -= 1
+                else:
+                    break
+                s_right -= 1
+            while t_right >= 0:
+                if t[t_right] == '#':
+                    t_del += 1
+                elif t_del > 0:
+                    t_del -= 1
+                else:
+                    break
+                t_right -= 1
+            # 两个都 < 0，则True，只有一个 < 0，则False
+            if s_right < 0 and t_right < 0:
+                return True
+            if s_right < 0 or t_right < 0:
+                return False
+            if s[s_right] != t[t_right]:
+                return False
+            s_right -= 1
+            t_right -= 1
+
+
+Solution().backspaceCompare("ab#c", "ad#c")

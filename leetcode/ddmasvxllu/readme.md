@@ -171,9 +171,73 @@ class Solution(object):
 
 #### 283.移动零
 https://leetcode-cn.com/problems/move-zeroes/description/
+快慢双指针，快指针找非零元素，慢指针放非零元素
 
-#### 844.比较含退格的字符串
+#### 😊🤞844.比较含退格的字符串
 https://leetcode-cn.com/problems/backspace-string-compare/description/
+
+python 字符串能这么修改吗： str[1] = str[10]
+
+不可以直接修改字符串中的某个字符，因为字符串是不可变的数据类型。如果想要修改字符串中的某个字符，可以先将字符串转换成列表，修改列表中的元素，然后再将列表转换回字符串。例如：
+
+```python
+str = "Hello, world!"
+lst = list(str)
+lst[1] = lst[10]
+str = ''.join(lst)
+print(str)
+```
+
+输出结果为：
+
+```
+Hdlo, world!
+```
+
+反向，双指针
+```python
+
+class Solution(object):
+    def backspaceCompare(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        #  倒序 双指针
+        s_right = len(s) - 1
+        t_right = len(t) - 1
+
+        s_del = 0
+        t_del = 0
+        while True:
+
+            while s_right >= 0:
+                if s[s_right] == '#':
+                    s_del += 1
+                elif s_del > 0:
+                    s_del -= 1
+                else:
+                    break
+                s_right -= 1
+            while t_right >= 0:
+                if t[t_right] == '#':
+                    t_del += 1
+                elif t_del > 0:
+                    t_del -= 1
+                else:
+                    break
+                t_right -= 1
+            # 两个都 < 0，则True，只有一个 < 0，则False
+            if s_right < 0 and t_right < 0:
+                return True
+            if s_right < 0 or t_right < 0:
+                return False
+            if s[s_right] != t[t_right]:
+                return False
+            s_right -= 1
+            t_right -= 1
+```
 
 #### 977.有序数组的平方
 https://leetcode.cn/problems/squares-of-a-sorted-array/description/
