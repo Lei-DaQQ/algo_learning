@@ -295,7 +295,7 @@ print(Solution().minSubArrayLen(7, [2, 3, 1, 2, 4, 3]))
 
 #### 904.水果成篮
 https://leetcode.cn/problems/fruit-into-baskets/description/
-
+滑动窗口
 
 #### 76.最小覆盖子串
 
