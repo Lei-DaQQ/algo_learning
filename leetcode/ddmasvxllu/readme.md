@@ -297,6 +297,11 @@ print(Solution().minSubArrayLen(7, [2, 3, 1, 2, 4, 3]))
 https://leetcode.cn/problems/fruit-into-baskets/description/
 滑动窗口
 
+```python
+m_dict = Counter()
+# 这个比较有意思
+```
+
 #### 76.最小覆盖子串
 
 https://leetcode-cn.com/problems/minimum-window-substring/description/
