@@ -338,3 +338,61 @@ https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E6%95%B
 ## 链表
 https://programmercarl.com/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html#%E9%93%BE%E8%A1%A8%E7%9A%84%E7%B1%BB%E5%9E%8B
 [text](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.md?tab=readme-ov-file)
+
+
+###移除链表元素
+#### 😊203.移除链表元素
+[链表：203.移除链表元素](./problems/0203.移除链表元素.md)
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0203.%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0.md
+https://leetcode.cn/problems/remove-linked-list-elements/
+
+这个还是有意思的，因为总是会忘记 cur cur.next 的判断关系
+```python
+    def removeElements(saelf, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        dummy_h = ListNode(next=head)
+        cur = dummy_h
+        while cur.next:
+            if cur.next.val == val:
+                cur.next = cur.next.next
+            cur = cur.next
+            '''
+                这里不对，应该是 else cur = cur.next
+                判断的永远是 cur.next 节点的值，所以 if 里是修改了 cur的 后续节点，这个后续节点还为判断，仍要通过 cur.next 进行判断，所以 cur 不可更改
+            '''
+        return dummy_h.next
+```
+
+```python
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        # 创建虚拟头部节点以简化删除过程
+        dummy_head = ListNode(next = head)
+        
+        # 遍历列表并删除值为val的节点
+        current = dummy_head
+        while current.next:
+            if current.next.val == val:
+                current.next = current.next.next
+            else:
+                current = current.next
+        
+        return dummy_head.next
+```
+
+### 设计链表
+#### 707.设计链表
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0707.%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8.md
+https://leetcode.cn/problems/design-linked-list/
+
+😊更有意思了，如果用了 dummy_head，那就cur = dummy_head， 然后永远 cur.next 是目的节点
+
+### 反转链表
+#### 206.反转链表
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.md
+https://leetcode.cn/problems/reverse-linked-list/
+
+[链表：24.两两交换链表中的节点](./problems/0024.两两交换链表中的节点.md)
+[链表：19.删除链表的倒数第 N 个结点](./problems/0019.删除链表的倒数第N个节点.md)
+[链表：链表相交](./problems/面试题02.07.链表相交.md)
+[链表：142.环形链表](./problems/0142.环形链表II.md)
+[链表：总结篇！](./problems/链表总结篇.md)
