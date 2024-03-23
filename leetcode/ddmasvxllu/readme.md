@@ -1,4 +1,6 @@
+https://github.com/youngyangyang04/leetcode-master
 
+## 数组
 ### 二分查找
 
 #### 704.二分查找
@@ -305,3 +307,34 @@ m_dict = Counter()
 #### 76.最小覆盖子串
 
 https://leetcode-cn.com/problems/minimum-window-substring/description/
+
+字典版滑动窗口
+
+
+### 螺旋矩阵
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0059.%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.md
+#### 59.螺旋矩阵II
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0059.%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.md
+https://leetcode.cn/problems/spiral-matrix-ii/description/
+
+从左向右，从上向下，从右向左，从下向上，循环遍历，每次遍历完一个方向，就把这个方向的边界缩小一格。
+
+
+#### 54.螺旋矩阵
+https://leetcode-cn.com/problems/spiral-matrix/description/
+
+和 59 一样， 没写这道题
+
+
+
+#### LCR 146. 螺旋遍历二维数组
+https://leetcode.cn/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/description/
+和54一模一样了，不写了吧
+
+### 数组总结
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93%E7%AF%87.md
+
+
+## 链表
+https://programmercarl.com/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html#%E9%93%BE%E8%A1%A8%E7%9A%84%E7%B1%BB%E5%9E%8B
+[text](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.md?tab=readme-ov-file)
