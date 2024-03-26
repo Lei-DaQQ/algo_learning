@@ -8,14 +8,17 @@ class Solution:
         '''
         递归
         '''
-        if head.next:
-            new_head, new_tail  = self.reverseList(head.next)
-            new_tail.next = head
-            return new_head, head
-        else:
-            return head, head
-        
-        
+        return self.recu(head, None)
+
+    def recu(self, cur, pre):
+
+        if cur == None:
+            return pre
+        tail = self.recu(cur.next, cur)
+        cur.next = pre
+        return tail
+
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):

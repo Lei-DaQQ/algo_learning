@@ -340,7 +340,6 @@ https://programmercarl.com/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8
 [text](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.md?tab=readme-ov-file)
 
 
-###移除链表元素
 #### 😊203.移除链表元素
 [链表：203.移除链表元素](./problems/0203.移除链表元素.md)
 https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0203.%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0.md
@@ -379,20 +378,152 @@ class Solution:
         return dummy_head.next
 ```
 
-### 设计链表
 #### 707.设计链表
 https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0707.%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8.md
 https://leetcode.cn/problems/design-linked-list/
 
 😊更有意思了，如果用了 dummy_head，那就cur = dummy_head， 然后永远 cur.next 是目的节点
 
-### 反转链表
 #### 206.反转链表
 https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.md
 https://leetcode.cn/problems/reverse-linked-list/
 
-[链表：24.两两交换链表中的节点](./problems/0024.两两交换链表中的节点.md)
-[链表：19.删除链表的倒数第 N 个结点](./problems/0019.删除链表的倒数第N个节点.md)
-[链表：链表相交](./problems/面试题02.07.链表相交.md)
-[链表：142.环形链表](./problems/0142.环形链表II.md)
-[链表：总结篇！](./problems/链表总结篇.md)
+#### ⭐24.两两交换链表中的节点
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0024.%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.md
+https://leetcode.cn/problems/swap-nodes-in-pairs/
+
+我说挺有意思，比较繁琐，容易出错，倒不是难。
+然后如果有一个dummy_head，会容易一些，cur 目前处在dummy_head的位置，接下来要交换之后的两个节点，然后 cur.next = 交换后的第一个节点，然后 cur = 交换后的第二个节点，继续这个过程，cur所处的位置仍然可以当作虚节点，继续交换之后的两个节点。
+如果之后是一个节点，则不用交换。
+
+
+#### 😀19.删除链表的倒数第 N 个结点
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0019.%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9.md
+
+https://leetcode.cn/problems/remove-nth-node-from-end-of-list/
+
+
+双指针解决，一个指针先走 n 步，然后两个指针一起走，当先走的指针走到头的时候，后走的指针就是倒数第 n 个节点的前一个节点。
+```python
+class Solution:
+    def removeNthFromEnd(self, head, n: int):
+        '''
+        double pointer
+        要找到倒数第n个的前一个
+        '''
+        dummy_head = ListNode(0, head)
+
+        cur = dummy_head
+        end = dummy_head
+
+        # for i in range(n):
+        #     end = end.next
+        # while end.next:
+        #     cur = cur.next
+        #     end = end.next
+
+        for i in range(n+1):
+            end = end.next
+        while end:
+            cur = cur.next
+            end = end.next
+            
+        cur.next = cur.next.next
+        return dummy_head.next
+```
+
+**用一个哑节点，还是很方便的。**
+
+
+#### 😀⭐⭐面试题02.07.链表相交
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E9%9D%A2%E8%AF%95%E9%A2%9802.07.%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4.md
+
+https://leetcode-cn.com/problems/intersection-of-two-linked-lists-lcci/description/
+
+取巧做法：
+https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/description/comments/2139357
+一个投机取巧的办法:把A全打负，再从B开始遍历看找到的第一个负数就是交点，最后把A变回来
+
+（这里因为是指针判等，所以改了A中的值，B中的值也会改变）
+
+---
+
+比较常规的做法是让较长的链表先走，当它剩余的节点和短链表一样时，两个链表一起走，如果有相交的节点，那么两个指针就会相等，如果没有相交的节点，那么两个指针就会同时为 None。
+
+---
+
+另一种做法是，
+将两个链表拼接起来，然后遍历，如果有相交的节点，那么遍历到最后，两个指针就会相等，如果没有相交的节点，那么遍历到最后，两个指针就会同时为 None，题解：
+
+---
+
+Per:关窍应该还是将公共部分对齐，像第一种做法，让长的链表先走一些步数，如此两个链表的结尾就对齐了，也就是公共部分对齐了：
+```md
+a先走，剩下和b一样长即可一起走
+[aaaaaaaaa]
+      [bbb]
+```
+
+然后拼接的做法，也是，如下，两个链表的结尾一定是对齐的，也就是公共部分一定是对齐的：
+```md
+[aaaaaaaaa][bbb]
+[bbb][aaaaaaaaa]
+```
+
+https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/solutions/1190240/mian-shi-ti-0207-lian-biao-xiang-jiao-sh-b8hn
+
+
+#### 142.环形链表II
+[github 题解](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.md)
+[142 leetcode](https://leetcode.cn/problems/linked-list-cycle-ii/description/)
+
+
+
+取巧做法：
+https://leetcode.cn/problems/linked-list-cycle-ii/description/comments/37475
+o(n)算法，应该是最快的。 堆的地址从低到高，LeetCode的链表内存是顺序申请的，如果有环，head->next一定小于或等于head，哈哈哈哈哈
+```cpp
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        while(head) {
+            if(!less<ListNode *>()(head, head->next)) {
+                return head->next;
+            }
+            head = head->next;
+        }
+        return nullptr;
+    }
+};
+```
+
+另一种取巧的做法，每个节点先增加一个 10^5 * 2 + 5 的值，如果有环，那么环的起点一定是大于 10^5 的，这样就可以找到环的起点了。
+然后再把所有节点减去 10^5 * 2 + 5，还原链表。
+```python
+class Solution:
+    def detectCycle(self, head):
+        '''
+        '''
+        added_num = 10**5 * 2 + 5
+        max_num = 10**5
+        cur = head
+        loop_begin = None
+        while cur:
+            if cur.val >= max_num:
+                loop_begin = cur
+
+                while True:
+                    cur.val -= added_num
+                    cur = cur.next
+                    if cur == loop_begin:
+                        break
+
+                break
+            cur.val += added_num
+            cur = cur.next
+        cur = head
+        while cur != loop_begin:
+            cur.val -= added_num
+            cur = cur.next
+        return loop_begin
+```
