@@ -473,7 +473,7 @@ a先走，剩下和b一样长即可一起走
 https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/solutions/1190240/mian-shi-ti-0207-lian-biao-xiang-jiao-sh-b8hn
 
 
-#### 142.环形链表II
+#### ⭐⭐⭐⭐142.环形链表II
 [github 题解](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.md)
 [142 leetcode](https://leetcode.cn/problems/linked-list-cycle-ii/description/)
 
@@ -527,3 +527,74 @@ class Solution:
             cur = cur.next
         return loop_begin
 ```
+
+正常做法：
+还是挺有意思的
+
+
+```python
+
+
+class Solution:
+    def detectCycle(self, head):
+        '''
+        双指针做法，这种做法是在head就算出发了，即开始计算步数了
+        '''
+
+        slow, fast = head, head.next if head else None
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                break
+        if (not fast) or fast != slow:
+            return None
+        # 有环
+        slow = head
+        fast = fast.next
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+        return slow
+
+```
+
+## 哈希表
+#### 242.有效的字母异位词
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0242.%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D.md#%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE
+
+https://leetcode.cn/problems/valid-anagram/description/
+
+
+
+#### 383.赎金信
+https://programmercarl.com/0383.%E8%B5%8E%E9%87%91%E4%BF%A1.html
+https://leetcode.cn/problems/ransom-note/
+
+在 `collections` 模块的 `Counter` 类中，有两种方法可以计算两个 `Counter` 对象之间的差异：减号 `-` 运算符和 `subtract` 方法。
+
+1. 减号 `-` 运算符：
+   通过使用减号运算符，可以计算一个 `Counter` 对象减去另一个 `Counter` 对象后的差异。它返回一个新的 `Counter` 对象，其中包含了两个 `Counter` 对象中元素的差异。如果某个元素在第一个 `Counter` 对象中的计数大于等于第二个 `Counter` 对象中的计数，那么在结果中该元素的计数为两者之差；否则，在结果中该元素不会出现。
+   
+   例如：
+   ```python
+   counter1 = Counter({'a': 3, 'b': 2, 'c': 1})
+   counter2 = Counter({'a': 2, 'b': 1, 'd': 1})
+   diff = counter1 - counter2
+   print(diff)
+   ```
+   输出结果为：`Counter({'a': 1, 'b': 1, 'c': 1})`
+
+2. `subtract` 方法：
+   `subtract` 方法也可以用于计算两个 `Counter` 对象的差异。它在原地修改第一个 `Counter` 对象，将其更新为减去第二个 `Counter` 对象后的结果。与减号 `-` 运算符不同，`subtract` 方法会保留所有的元素，即使某个元素在第一个 `Counter` 对象中的计数小于第二个 `Counter` 对象中的计数，它的计数也会变成负数。
+   
+   例如：
+   ```python
+   counter1 = Counter({'a': 3, 'b': 2, 'c': 1})
+   counter2 = Counter({'a': 2, 'b': 1, 'd': 1})
+   counter1.subtract(counter2)
+   print(counter1)
+   ```
+   输出结果为：`Counter({'a': 1, 'b': 1, 'c': 1, 'd': -1})`
+
+因此，减号 `-` 运算符返回一个新的 `Counter` 对象，其中只包含计数大于零的元素，而 `subtract` 方法则原地修改第一个 `Counter` 对象，保留所有元素，并将计数变为负数（如果有必要）。
