@@ -601,6 +601,8 @@ https://leetcode.cn/problems/ransom-note/
 
 
 #### 😀49. 字母异位词分组
+https://leetcode.cn/problems/group-anagrams/description/
+
 还是有点意思的，因为一些python的语法不太清楚。
 
 前言
@@ -632,3 +634,6 @@ class Solution:
 链接：https://leetcode.cn/problems/group-anagrams/solutions/520469/zi-mu-yi-wei-ci-fen-zu-by-leetcode-solut-gyoc/
 来源：力扣（LeetCode）
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+#### 438.找到字符串中所有字母异位词
+https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/
