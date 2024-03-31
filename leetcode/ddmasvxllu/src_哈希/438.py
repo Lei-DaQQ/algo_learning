@@ -29,17 +29,20 @@ class Solution:
     def findAnagrams(self, s: str, p: str) -> list[int]:
         from typing import Counter
         len_s = len(s)
-        len_p = len(p)
         counter_p = Counter(p)
-        start, end = 0, len_p-1
-        counter_sub = Counter(s[start:end])
+        counter_sub = {}
         res = []
-        for start in range(0, len_s - len_p+1):
-            counter_sub[s[end]] += 1
-            if counter_p == counter_sub:
-                res.append(start)
-            counter_sub[s[start]] -= 1
-            if counter_sub[s[start]] == 0:
-                del counter_sub[s[start]]
-            end += 1
+        left, right = 0, 0
+        while right < len_s:
+            if s[right] not in p:
+                counter_sub.clear()
+                left = right = right + 1
+            else:
+                counter_sub[s[right]] = counter_sub.get(s[right], 0) + 1
+                if right - left + 1 == len(p):
+                    if counter_p == counter_sub:
+                        res.append(left)
+                    counter_sub[s[left]] -= 1
+                    left += 1
+                right += 1
         return res
