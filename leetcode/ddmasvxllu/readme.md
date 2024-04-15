@@ -635,5 +635,56 @@ class Solution:
 来源：力扣（LeetCode）
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-#### 438.找到字符串中所有字母异位词
+#### 😀438.找到字符串中所有字母异位词
 https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/
+滑动窗口
+
+自己写的比较慢的code：
+```python
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> list[int]:
+        from typing import Counter
+        len_s = len(s)
+        len_p = len(p)
+        counter_p = Counter(p)
+        start, end = 0, len_p-1
+        counter_sub = Counter(s[start:end])
+        res = []
+        for start in range(0, len_s - len_p+1):
+            counter_sub[s[end]] += 1
+            if counter_p == counter_sub:
+                res.append(start)
+            counter_sub[s[start]] -= 1
+            if counter_sub[s[start]] == 0:
+                del counter_sub[s[start]]
+            end += 1
+        return res
+```
+
+官方的code：
+https://leetcode.cn/problems/find-all-anagrams-in-a-string/solutions/19988/pythonshi-xian-da-lao-hua-dong-chuang-kou-si-xiang
+
+```python
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> list[int]:
+        from typing import Counter
+        len_s = len(s)
+        counter_p = Counter(p)
+        counter_sub = {}
+        res = []
+        left, right = 0, 0
+        while right < len_s:
+            if s[right] not in p:
+                counter_sub.clear()
+                left = right = right + 1
+            else:
+                counter_sub[s[right]] = counter_sub.get(s[right], 0) + 1
+                if right - left + 1 == len(p):
+                    if counter_p == counter_sub:
+                        res.append(left)
+                    counter_sub[s[left]] -= 1
+                    left += 1
+                right += 1
+        return res
+```
