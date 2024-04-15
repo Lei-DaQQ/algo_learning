@@ -560,6 +560,7 @@ class Solution:
 ```
 
 ## 🤓哈希表
+### 2
 #### 242.有效的字母异位词
 https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0242.%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D.md#%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE
 
@@ -688,3 +689,138 @@ class Solution:
                 right += 1
         return res
 ```
+
+### 3
+#### 1002.查找常用字符
+<a href='https://github.com/youngyangyang04/leetcode-master/blob/master/problems/1002.%E6%9F%A5%E6%89%BE%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6.md'>leetcode-master/problems/1002.查找常用字符.md at master · youngyangyang04/leetcode-master</a>
+https://leetcode-cn.com/problems/find-common-characters/description/
+
+
+```md
+在Python中，`collections` 模块的 `Counter` 类是一个非常有用的工具，用于统计可哈希对象（如列表中的元素）的出现次数。如果你想要根据 `Counter` 对象的结果将其转换为列表，这主要取决于你想要列表中包含什么。以下是几种基于 `Counter` 结果转换为列表的常见方式：
+
+1. **仅元素列表**：如果你只想要出现过的元素，可以直接从 `Counter` 对象的键中获取。
+
+2. **元素重复列表**：如果你想要一个列表，其中每个元素根据其出现次数重复，可以使用列表推导式。
+
+3. **元素和计数对列表**：如果你想要一个包含元素及其出现次数的元组列表，可以直接使用 `Counter` 对象的 `.items()` 方法。
+
+下面是这三种方法的示例代码：
+
+```python
+from collections import Counter
+
+# 示例数据
+data = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple']
+
+# 使用Counter统计元素出现次数
+counter = Counter(data)
+
+# 1. 仅元素列表
+elements_list = list(counter.keys())
+print("仅元素列表:", elements_list)
+
+# 2. 元素重复列表
+repeated_elements_list = [item for item, count in counter.items() for _ in range(count)]
+print("元素重复列表:", repeated_elements_list)
+
+# 3. 元素和计数对列表
+items_count_list = list(counter.items())
+print("元素和计数对列表:", items_count_list)
+```
+
+输出将类似于：
+
+```txt
+仅元素列表: ['apple', 'banana', 'orange']
+元素重复列表: ['apple', 'apple', 'apple', 'banana', 'banana', 'orange']
+元素和计数对列表: [('apple', 3), ('banana', 2), ('orange', 1)]
+```
+
+这三种方法分别适用于不同的场景，你可以根据自己的需求选择使用。
+```
+
+
+```md
+你的代码尝试通过列表推导式来创建一个列表，其中元素根据它们在 `Counter` 对象中的计数重复出现。问题在于表达式 `item * counter` 并不会按你所期望的方式工作，因为这里 `item * counter` 尝试将一个字符串（假设 `item` 是字符串）与一个整数（`counter`，表示计数）相乘。字符串与整数的乘法会导致字符串重复，而不是按照你想要的方式创建多个独立的元素。
+
+正确的方式是在内部列表推导式中重复每个元素 `count` 次，其中 `count` 是该元素出现的次数。这里是如何正确做到这一点的：
+
+```python
+from collections import Counter
+
+# 假设 insert_cnt 是你的 Counter 对象
+insert_cnt = Counter(['apple', 'banana', 'apple', 'orange', 'banana', 'apple'])
+
+# 正确的方法
+lst = [item for item, count in insert_cnt.items() for _ in range(count)]
+
+print(lst)
+```
+
+这段代码首先遍历 `insert_cnt.items()`，这会给你每个元素及其计数。然后，对于每个 `(item, count)` 对，它使用 `for _ in range(count)` 来重复 `item` `count` 次。这正是你想要达到的效果：如果一个元素在 `Counter` 中出现了几次，它就会在列表中出现几次。
+
+注意，我在内部循环中使用了 `_` 作为循环变量，因为我们实际上不需要在循环体内使用这个变量的值；它仅仅是用来重复次数的。
+```
+
+python中的交集运算符 `&` 用于计算两个集合的交集。对于两个 `Counter` 对象，`&` 运算符返回一个新的 `Counter` 对象，其中包含两个 `Counter` 对象中共同的元素及其最小的计数。这意味着，如果一个元素在两个 `Counter` 对象中的计数分别为 `count1` 和 `count2`，那么在结果中该元素的计数为 `min(count1, count2)`。
+
+### 3
+#### 340. 两个数组的交集
+<a href='https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0349.%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86.md'>leetcode-master/problems/0349.两个数组的交集.md at master · youngyangyang04/leetcode-master</a>
+
+https://leetcode.cn/problems/intersection-of-two-arrays/description/
+
+#### 350. 两个数组的交集 II
+https://leetcode.cn/problems/intersection-of-two-arrays-ii/description/
+
+### 5
+#### 202.快乐数
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0202.%E5%BF%AB%E4%B9%90%E6%95%B0.md
+
+https://leetcode.cn/problems/happy-number/description/
+
+
+
+
+
+```md
+
+        return sum(map(lambda x: int(x) ** 2, str(n)))
+
+您提供的这行代码是另一个非常简洁且高效的方法来计算一个整数 `n` 中每个数字的平方和，而且它同样避免了显式的循环结构。这次，您使用了 `lambda` 函数配合 `map` 函数来实现这一目标。让我们逐步解析这段代码：
+
+```python
+return sum(map(lambda x: int(x) ** 2, str(n)))
+```
+
+1. **`str(n)`**: 首先，整数 `n` 被转换成字符串。这样做是为了能够迭代 `n` 的每个数字。例如，如果 `n` 是 123，`str(n)` 的结果是字符串 `"123"`。
+
+2. **`lambda x: int(x) ** 2`**: 这是一个匿名函数（也称为 lambda 函数），它接受一个参数 `x`，将 `x` 转换为整数，并计算它的平方。这个 lambda 函数将应用于 `str(n)` 生成的字符串的每个字符上。
+
+3. **`map(lambda x: int(x) ** 2, str(n))`**: `map` 函数将上述的 lambda 函数应用于 `str(n)` 的每个字符上。由于 `str(n)` 是一个字符串，它的每个元素（即每个字符）都会被转换成整数并计算平方。因此，这个 `map` 调用返回一个迭代器，迭代器中的元素是 `n` 的每个数字的平方。
+
+4. **`sum(map(lambda x: int(x) ** 2, str(n)))`**: 最后，使用 `sum` 函数来计算上一步 `map` 函数返回的迭代器中所有元素的总和。这个总和就是整数 `n` 中每个数字的平方和。
+
+总结来说，这行代码通过将整数转换为字符串，然后使用 `map` 函数和一个 lambda 函数来计算每个数字的平方，并最终使用 `sum` 函数来计算这些平方的总和，从而实现了计算一个整数中每个数字的平方和的目标，而且这一切都在一行代码中完成。
+
+这个行为来自于 `map` 函数的工作原理，结合了 `str(n)` 的结果。让我们再次审视这个过程，特别是 `map` 函数如何应用于 `str(n)` 的结果上，以及为什么会导致每个字符都被调用一次。
+
+### 步骤解析
+
+1. **转换为字符串**：`str(n)` 将整数 `n` 转换成字符串。这是因为字符串可以被视为一个字符序列，即一个字符的列表。例如，如果 `n = 123`，`str(n)` 的结果是 `"123"`。
+
+2. **字符串的迭代性**：字符串在 Python 中是可迭代的，意味着你可以像遍历列表或元组那样遍历字符串的每个元素（在这个情况下，每个元素是一个字符）。
+
+3. **`map` 函数的应用**：当你将 `map` 函数应用于 `str(n)`，你实际上是在对 `str(n)` 生成的字符串的每个字符进行操作。`map` 函数按顺序取出字符串中的每个字符，并将指定的函数（在这个例子中是 `lambda x: int(x) ** 2`）应用于这些字符。
+
+### 为什么每个字符都会被调用一次？
+
+- 这是因为 `map` 函数设计用来对可迭代对象的每个元素执行给定的函数。在这个例子中，可迭代对象是通过 `str(n)` 得到的字符串，其每个元素是单独的字符。
+- 当 `map` 函数执行时，它内部实现了一个迭代过程，遍历 `str(n)` 的每个字符，并对这些字符逐一应用 `lambda x: int(x) ** 2` 函数。这意味着 `lambda` 函数会被调用多次，具体调用次数等于 `n` 转换成字符串后的长度。
+
+### 结论
+
+因此，结论是每个字符都被调用一次来自于 `map` 函数和字符串的迭代性质。`map` 函数确保了对 `str(n)` 中的每个字符执行了一次转换和平方操作，这正是为什么每个字符都会被单独处理的原因。
+```
+
