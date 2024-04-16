@@ -876,3 +876,71 @@ class Solution:
 https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0454.%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0II.md
 
 https://leetcode.cn/problems/4sum-ii/description/
+
+### 8
+#### 383.赎金信
+
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0383.%E8%B5%8E%E9%87%91%E4%BF%A1.md
+
+https://leetcode.cn/problems/ransom-note/
+
+### 9
+#### 🤓🤓15.三数之和
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0015.%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C.md
+
+https://leetcode.cn/problems/3sum/description/
+
+还挺有意思。。。。。。
+
+```python
+
+class Solution:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        '''
+        如果先将两数之和存入haspmap?
+        '''
+        '''
+        如果先将两数之和存入haspmap，但是比较麻烦的就是index， 可能的解决方式是存储时：{key:sum, value:[index1, index2]}
+        但是sum是可重复的
+
+        如果先所有数排序？
+        [- - - - 0 0 0 + + + +]
+        '''
+
+        ans = []
+        length = len(nums)
+        nums.sort()
+        for index, num1 in enumerate(nums):
+            if num1 > 0 or index + 2 == length:
+                break
+            if index > 0 and num1 == nums[index-1]:
+                continue
+            left, right = index + 1, length - 1
+            while left < right:
+                left_num, right_num = nums[left], nums[right]
+                if num1 + left_num + right_num == 0:
+                    ans.append([num1, left_num, right_num])
+                    while left < right and nums[left] == left_num:
+                        left += 1
+                    while left < right and nums[right] == right_num:
+                        right -= 1
+                elif num1+left_num + right_num < 0:
+                    left += 1
+                else:
+                    right -= 1
+        return ans
+
+            
+            
+        
+        
+Solution().threeSum([-1,0,1,2,-1,-4])
+```
+
+
+### 10
+#### 18.四数之和
+
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0018.%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C.md
+
+https://leetcode.cn/problems/4sum/description/
