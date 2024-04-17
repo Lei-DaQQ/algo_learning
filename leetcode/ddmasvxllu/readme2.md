@@ -41,7 +41,7 @@ print(result_str)
 这种方法允许你指定一个分隔符，用于连接列表中的元素。
 
 ### 3
-#### 替换数字
+#### ❓替换数字
 https://programmercarl.com/kama54.%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97.html
 
 非leetcode题目，且比较简单，所以没做。
@@ -106,3 +106,16 @@ class Solution:
             left += 1
             right -= 1
 ```
+
+### 5
+#### ❓右旋字符串
+github没有这个网页
+
+### 6
+#### ⭐⭐28. 实现 strStr()
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0028.%E5%AE%9E%E7%8E%B0strStr.md
+
+https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/
+
+
+KMP算法重出江湖了属于。
