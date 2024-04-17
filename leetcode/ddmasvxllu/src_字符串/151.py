@@ -12,9 +12,9 @@ class Solution:
         '''
         不要使用split，并且原地操作
         2steps：
+        3.删去空格
         1：整个字符串反转
         2：每个单词反转
-        3.移动空格
 
 
         '''
@@ -36,11 +36,12 @@ class Solution:
         start = 0
         idx = 0
         length = len(str)
+        while str[length-1] == ' ':
+            length -= 1
         while idx < length:
             while idx < length and str[idx] == ' ':
                 idx += 1
             # new word
-
             while idx < length and str[idx] != ' ':
                 str[start] = str[idx]
                 start += 1

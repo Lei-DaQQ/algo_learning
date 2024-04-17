@@ -47,8 +47,62 @@ https://programmercarl.com/kama54.%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97.html
 非leetcode题目，且比较简单，所以没做。
 
 ### 4
-#### 151. 翻转字符串里的单词
+#### 😀151. 翻转字符串里的单词
 https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0151.%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D.md
 
 https://leetcode.cn/problems/reverse-words-in-a-string/
 
+如果不用 split()，还是有点麻烦的，不过挺有意思的。
+
+
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        '''
+        不要使用split，并且原地操作
+        2steps：
+        3.删去空格
+        1：整个字符串反转
+        2：每个单词反转
+
+
+        '''
+        str = list(s)
+        length = self.moveSpace(str)
+        self.reverseStr(str, 0, length-1)
+
+        start = 0
+        # 单词反转
+        while start < length:
+            end = start + 1
+            while end < length and str[end] != ' ':
+                end += 1
+            self.reverseStr(str, start, end - 1)
+            start = end + 1
+        return "".join(str[0:length])
+
+    def moveSpace(self, str: list):
+        start = 0
+        idx = 0
+        length = len(str)
+        while str[length-1] == ' ':
+            length -= 1
+        while idx < length:
+            while idx < length and str[idx] == ' ':
+                idx += 1
+            # new word
+            while idx < length and str[idx] != ' ':
+                str[start] = str[idx]
+                start += 1
+                idx += 1
+            if idx < length:
+                str[start] = ' '
+                start += 1  # a space
+        return start  # new length
+
+    def reverseStr(self, str: list, left, right):
+        while left < right:
+            str[left], str[right] = str[right], str[left]
+            left += 1
+            right -= 1
+```
