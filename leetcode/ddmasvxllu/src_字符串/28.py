@@ -14,22 +14,35 @@ class Solution:
                     idx_hay += 1
                     continue
                 idx_need = next[idx_need-1]
-                
+
         if idx_need == length_need:
             return idx_hay - length_need
         else:
             return -1
 
     def buildNext(self, str):
+        i, j = 0, 1
         length = len(str)
         next = [0]*length
-
-        for i in range(1, length):
-            if str[i] == str[next[i-1]]:
-                next[i] = next[i-1] + 1
+        while j < length:
+            if str[i] == str[j]:
+                next[j] = i + 1
+                i += 1
+                j += 1
+            # else:
+            #     if i == 0:
+            #         next[j] = 0
+            #         j += 1
+            #         continue
+            #     i = next[i-1]                
             else:
-                next[i] = 0
+                while i > 0 and str[i] != str[j]:
+                    i = next[i-1]
+                if str[i] != str[j]:
+                    next[j] = 0 
+                    j += 1
         return next
+
 
 Solution().strStr('aabaaabaaac', 'aabaaac')
 # Solution().strStr('leetcode', 'la')

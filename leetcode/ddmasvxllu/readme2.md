@@ -112,10 +112,19 @@ class Solution:
 github没有这个网页
 
 ### 6
-#### ⭐⭐28. 实现 strStr()
+#### ⭐⭐⭐28. 实现 strStr()
 https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0028.%E5%AE%9E%E7%8E%B0strStr.md
 
 https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/
 
 
 KMP算法重出江湖了属于。
+
+### 7
+#### ⭐⭐⭐ 459. 重复的子字符串
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0459.%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2.md
+
+https://leetcode.cn/problems/repeated-substring-pattern/description/
+
+一个串如果是循环串，那么循环节的长度一定是原串长度的约数。
+而且最长的相等前后缀，剩下的部分就是循环节。
