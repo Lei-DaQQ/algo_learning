@@ -221,7 +221,7 @@ https://github.com/youngyangyang04/leetcode-master/blob/master/problems/1047.%E5
 
 https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/
 
-
+看完之前几道题，这道题就很简单了。
 
 
 
