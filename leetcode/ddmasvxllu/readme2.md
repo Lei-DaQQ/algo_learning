@@ -224,7 +224,17 @@ https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/
 看完之前几道题，这道题就很简单了。
 
 
+### 6
+#### 150. 逆波兰表达式求值
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0150.%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC.md
 
+https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/
+
+巨坑的是python的整除，和java不一样，python的整除是向下取整，java的整除是向0取整。
+所以用浮点除法 / 然后直接 int() 就可以了。
+
+另外最后的结果需要是整数，而不是字符串。
+还有从stack中取数的时候，先出来的是第二个数，后出来的是第一个数。
 
 
 
