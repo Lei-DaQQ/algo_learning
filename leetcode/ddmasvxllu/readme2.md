@@ -236,5 +236,18 @@ https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/
 另外最后的结果需要是整数，而不是字符串。
 还有从stack中取数的时候，先出来的是第二个数，后出来的是第一个数。
 
+### 7
+#### ⭐⭐⭐⭐239. 滑动窗口最大值
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0239.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC.md
 
+https://leetcode.cn/problems/sliding-window-maximum/description/
+
+非常的有趣啊！
+维护Nums中的一个递减的队列.
+
+### 8
+#### 347. 前 K 个高频元素
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0347.%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0.md
+
+https://leetcode.cn/problems/top-k-frequent-elements/description/
 
